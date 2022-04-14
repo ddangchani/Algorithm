@@ -21,3 +21,4 @@ print(f'{nums[0]} {nums[n-1]}')
 import sys
 input() # 먼저 input으로 첫줄의 무의미한 N을 쳐냄
 ls = [int(s) for s in sys.stdin.read().split]
+print(f'{min(ls)} {max(ls)}')
