@@ -109,7 +109,7 @@ def find_max(data, ls):
 
 max_vals = []
 for ls in itertools.product([1,2,3,4],repeat=5): # itertools.product로 중복순열 구현
-    data_ls = copy.deepcopy(data) # deepcopying
+    data_ls = copy.deepcopy(data) # deepcopying > 이중리스트는 deepcopying 필요
     max_vals.append(find_max(data_ls, ls))
 
 print(max(max_vals))
