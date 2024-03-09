@@ -19,15 +19,13 @@ def count_num(dist):
 
 left = 1
 right = ls[-1] - ls[0]
-answer = 0
 
 while left <= right:
     mid = (left + right) // 2
     if count_num(mid) >= C: # check(x)
-        answer = mid
         left = mid + 1
     else:
         right = mid - 1
 
-# check(left) = False, check(right) = True
+# Upper bound problem
 print(right)
