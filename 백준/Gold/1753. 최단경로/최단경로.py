@@ -14,11 +14,11 @@ for _ in range(E):
 
 def dijkstra(start):
     heap = []
-    heappush(heap, (0, start))
+    heappush(heap, (0, start)) # initialize
     dist[start] = 0
     while heap:
         d, n = heappop(heap)
-        if dist[n] < d:
+        if dist[n] < d: # already visited
             continue
         for g in graph[n]:
             cost = d + g[1]
