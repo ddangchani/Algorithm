@@ -1,21 +1,27 @@
-# 14501 퇴사 > Dynamic 역순으로
-import sys
-# Data Load
-N = int(sys.stdin.readline())
-day = []
-profit = []
-for _ in range(N):
-    d, p = map(int, sys.stdin.readline().split())
-    day.append(d)
-    profit.append(p)
+# 1931 회의실 배정
 
-dp = [0] # 역순 최대수익 : (N - i)번째 원소 - (i+1)째날에 대응
-for i in reversed(range(N)): # 역순으로 탐색
-    d, p = day[i], profit[i]
-    if d > (N - i) : # 상담 불가능한 경우
-        dp.append(dp[N-i-1])
+import sys
+
+N = int(input())
+time = [0]
+revenue = [0]
+
+for _ in range(N):
+    t, p = map(int, input().split())
+    time.append(t)
+    revenue.append(p)
+
+res = [0] * (N+2)
+
+# Reverse order DP
+for i in range(N, 0, -1):
+    ti, pi = time[i], revenue[i]
+    if i + ti  >  N+1:
+        res[i] = res[i+1]
+        continue
     else:
-        val = max(dp[N-i-1], dp[N-i-d] + p)
-        dp.append(val)
-        
-print(dp.pop())
+        res[i] = max(res[i+1], res[i+ti] + pi)
+
+print(res[1])
+
+
