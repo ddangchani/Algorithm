@@ -24,11 +24,28 @@ def chicken_dist(dist_mat):
     return sum(map(min, zip(*dist_mat)))
 
 # Brute force : use combination
-best = int(1e6)
-for comb in combinations(range(len(chickens)), M):
-    new_dist_mat = [dist_mat[r] for r in comb]
-    new_dist = chicken_dist(new_dist_mat)
-    if new_dist < best:
-        best = new_dist
+# best = int(1e6)
+# for comb in combinations(range(len(chickens)), M):
+#     new_dist_mat = [dist_mat[r] for r in comb]
+#     new_dist = chicken_dist(new_dist_mat)
+#     if new_dist < best:
+#         best = new_dist
 
-print(best)
+# print(best)
+ans = []
+comb = []
+# Not using itertools
+def backtrack(start, depth):
+    if depth == M:
+        new_dist_mat = [dist_mat[r] for r in comb]
+        ans.append(chicken_dist(new_dist_mat))
+        return
+    
+    for i in range(start, len(chickens)):
+        comb.append(i)
+        backtrack(i+1, depth+1)
+        comb.pop()
+
+backtrack(0,0)
+print(min(ans))
+
